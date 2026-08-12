@@ -1,0 +1,14 @@
+# APIC connection settings. CLI options take priority over these values.
+APIC_ADDRESS="apic.example.com"
+APIC_PORT="22"
+APIC_USER="admin"
+APIC_PASS="change-me!"
+APIC_PRIV_KEY=""
+
+# Optional validator settings.
+TARGET_VERSION=""
+CURRENT_VERSION=""
+VALIDATION_TIMEOUT="600"
+MAX_THREADS="0"
+API_ONLY=""
+SSH_INSECURE=""

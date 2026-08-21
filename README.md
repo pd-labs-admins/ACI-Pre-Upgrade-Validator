@@ -36,6 +36,19 @@ Binaries for the CLI and GUI versions can be downloaded from the [release page](
 | Windows | 64-bit (amd64 / x86_64) | `ACI-Pre-Upgrade-Validator_windows_amd64.exe` |
 | Windows | ARM 64-bit (arm64) | `ACI-Pre-Upgrade-Validator_windows_arm64.exe` |
 
+### How to Handle Security Warnings on macOS
+
+When you launch the macOS GUI binary, the following security warning may appear.
+
+![image](assets/macos-security-warning-01.webp)
+
+This is due to a macOS security mechanism that “prevents the launch of applications without a security signature.” To make the binary executable, please perform the following steps at your own risk. This will make the binary executable.
+
+```sh
+unzip ACI-Pre-Upgrade-Validator_darwin_arm64.zip
+xattr -dr com.apple.quarantine ACI-Pre-Upgrade-Validator_darwin_arm64.app
+```
+
 ### CLI tool
 
 | OS | Architecture | File name |
@@ -113,9 +126,12 @@ The validation results are displayed in the `Validation Log`. Click the `Open re
 
 Run the tool by specifying the APIC address with `-a`, the username with `-u`, and the password with `-p`. If `config.ini` exists in the same directory as the tool, its parameters are read automatically, so you can omit them from the command line.
 
+The following is an example output from the v4.2.0 script; result counts vary
+with the APIC fabric and the selected target version.
+
 ```sh
 % ./ACI-Pre-Upgrade-Validator-CLI_darwin_arm64 -a 172.20.0.200 -u admin -p 'change-me'
-    ==== 2026-08-10T16-17-11+0900, Script Version v4.1.1  ====
+    ==== 2026-08-10T16-17-11+0900, Script Version v4.2.0  ====
 
 !!!! Check https://github.com/datacenter/ACI-Pre-Upgrade-Validation-Script for Latest Release !!!!
 
@@ -159,7 +175,7 @@ TOTAL                       : 96
 
       Result Bundle: /home/admin/preupgrade_validator_2026-08-10T16-17-11+0900.tgz
 
-==== Script Version v4.1.1 FIN ====
+==== Script Version v4.2.0 FIN ====
 Report saved to /home/user/report/20260810-161719/report.html
 ```
 
@@ -233,7 +249,7 @@ The HTML report displays a summary of the results (`Summary Result`) at the top.
 
 ## License and acknowledgements
 
-This software is provided under the **Apache License 2.0**. See the accompanying [LICENSE](LICENSE) file for details.
+This software is provided under the **Apache License 2.0**. See the accompanying [LICENSE](/LICENSE) file for details.
 
 This tool is a derivative tool based on, and enhanced from, [ACI-Pre-Upgrade-Validation-Script](https://github.com/datacenter/ACI-Pre-Upgrade-Validation-Script) (Apache License 2.0), developed and published by [Cisco Systems, Inc.](https://www.cisco.com/). We sincerely thank the original developers and community for publishing and maintaining this excellent base tool as open source.
 

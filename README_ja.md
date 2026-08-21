@@ -36,6 +36,19 @@ CLI版/GUI版、各々のバイナリはこのページの[リリースページ
 | Windows | 64ビット (amd64 / x86_64) | `ACI-Pre-Upgrade-Validator_windows_amd64.exe` |
 | Windows | ARM 64ビット (arm64) | `ACI-Pre-Upgrade-Validator_windows_arm64.exe` |
 
+### macOSでセキュリティ警告が表示された場合の対処方法
+
+macOS版のGUIバイナリを起動した際に以下のセキュリティ警告が表示される場合があります。
+
+![image](assets/macos-security-warning-01.webp)
+
+これは「セキュリティ署名の無いアプリケーションの起動を禁止する」というmacOSのセキュリティ機構によるものです。バイナリを実行できるようにするには自己責任でで以下を実行してください。これでバイナリが実行可能になります。
+
+```sh
+unzip ACI-Pre-Upgrade-Validator_darwin_arm64.zip
+xattr -dr com.apple.quarantine ACI-Pre-Upgrade-Validator_darwin_arm64.app
+```
+
 ### CLI版ツール
 
 | OS | アーキテクチャ | ファイル名 |
@@ -113,9 +126,11 @@ SSH_INSECURE=""
 
 「`-a`でAPICのアドレス」「`-u`でユーザ名」「`-p`でパスワード」を指定して実行します。ツールと同じディレクトリに`config.ini`が存在する場合、`config.ini`で設定したパラメータが自動的に参照される為、入力を省略することが出来ます。
 
+以下は v4.2.0 スクリプトの実行例です。結果件数は APIC ファブリックとアップグレード先バージョンによって変わります。
+
 ```sh
 % ./ACI-Pre-Upgrade-Validator-CLI_darwin_arm64 -a 172.20.0.200 -u admin -p 'change-me'
-    ==== 2026-08-10T16-17-11+0900, Script Version v4.1.1  ====
+    ==== 2026-08-10T16-17-11+0900, Script Version v4.2.0  ====
 
 !!!! Check https://github.com/datacenter/ACI-Pre-Upgrade-Validation-Script for Latest Release !!!!
 
@@ -159,7 +174,7 @@ TOTAL                       : 96
 
       Result Bundle: /home/admin/preupgrade_validator_2026-08-10T16-17-11+0900.tgz
 
-==== Script Version v4.1.1 FIN ====
+==== Script Version v4.2.0 FIN ====
 Report saved to /home/user/report/20260810-161719/report.html
 ```
 
@@ -233,7 +248,7 @@ HTML形式のレポートファイルは上部に結果の要約(Summary Result)
 
 ## ライセンスと謝辞
 
-本ソフトウェアは **Apache License 2.0** のもとで提供されています。詳細は同梱の [LICENSE](LICENSE) ファイルをご参照ください。
+本ソフトウェアは **Apache License 2.0** のもとで提供されています。詳細は同梱の [LICENSE](/LICENSE) ファイルをご参照ください。
 
 また、本ツールは [Cisco Systems, Inc.](https://www.cisco.com/) が開発・公開している [ACI-Pre-Upgrade-Validation-Script](https://github.com/datacenter/ACI-Pre-Upgrade-Validation-Script)（Apache License 2.0）をベースに、改変・機能追加を行って作成された派生ツールです。素晴らしいベースツールをオープンソースとして公開・維持されているオリジナルの開発者・コミュニティの皆様に心より感謝申し上げます。
 

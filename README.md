@@ -126,12 +126,12 @@ The validation results are displayed in the `Validation Log`. Click the `Open re
 
 Run the tool by specifying the APIC address with `-a`, the username with `-u`, and the password with `-p`. If `config.ini` exists in the same directory as the tool, its parameters are read automatically, so you can omit them from the command line.
 
-The following is an example output from the v4.2.0 script; result counts vary
+The following is an example output from the v4.3.0 script; result counts vary
 with the APIC fabric and the selected target version.
 
 ```sh
 % ./ACI-Pre-Upgrade-Validator-CLI_darwin_arm64 -a 172.20.0.200 -u admin -p 'change-me'
-    ==== 2026-08-10T16-17-11+0900, Script Version v4.2.0  ====
+    ==== 2026-08-10T16-17-11+0900, Script Version v4.3.0  ====
 
 !!!! Check https://github.com/datacenter/ACI-Pre-Upgrade-Validation-Script for Latest Release !!!!
 
@@ -149,7 +149,7 @@ You have chosen version "6.1(5e)"
 
 Collecting VPC Node IDs...201, 202
 
-Progress: |████████████████████████████████████████████████████████████████████████████████████████████████████| 96/96 checks completed
+Progress: |████████████████████████████████████████████████████████████████████████████████████████████████████| 117/117 checks completed
 
 
 === Check Result (failed only) ===
@@ -158,14 +158,14 @@ Progress: |███████████████████████
 
 === Summary Result ===
 
-PASS                        : 68
+PASS                        : 89
 FAIL - OUTAGE WARNING!!     :  0
 FAIL - UPGRADE FAILURE!!    :  4
 MANUAL CHECK REQUIRED       :  3
 POST UPGRADE CHECK REQUIRED :  0
 N/A                         : 21
 ERROR !!                    :  0
-TOTAL                       : 96
+TOTAL                       : 117
 
     Pre-Upgrade Check Complete.
     Next Steps: Address all checks flagged as FAIL, ERROR or MANUAL CHECK REQUIRED
@@ -175,7 +175,7 @@ TOTAL                       : 96
 
       Result Bundle: /home/admin/preupgrade_validator_2026-08-10T16-17-11+0900.tgz
 
-==== Script Version v4.2.0 FIN ====
+==== Script Version v4.3.0 FIN ====
 Report saved to /home/user/report/20260810-161719/report.html
 ```
 
